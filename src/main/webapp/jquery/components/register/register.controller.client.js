@@ -20,7 +20,7 @@
 
         var userObjStr = JSON.stringify(userObj);
 
-        fetch('/register', {
+        fetch('/api/register', {
             method: 'post',
             body: userObjStr,
             headers: {
