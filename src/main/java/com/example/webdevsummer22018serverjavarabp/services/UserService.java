@@ -31,6 +31,12 @@ public class UserService {
 		return currentUser;
 	}
 	
+	@GetMapping("/api/profile")
+	public Optional<User> profile(HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		return userRepository.findById(currentUser.getId());
+	}
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) userRepository.findAll();

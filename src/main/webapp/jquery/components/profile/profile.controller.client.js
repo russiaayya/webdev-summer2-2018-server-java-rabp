@@ -40,14 +40,11 @@
     }
 
     function renderUser(user) {
-        currentUser = user;
         $username.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
     }
 
     function profile() {
-        return fetch('/profile', {
+        return fetch('/api/profile', {
             'credentials': 'include'
         })
             .then(function (response) {

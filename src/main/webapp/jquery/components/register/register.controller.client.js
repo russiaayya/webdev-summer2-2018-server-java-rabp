@@ -20,7 +20,7 @@
 
         if (passwordStr===verifyPasswordStr){
             var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
-            userService
+            return userService
                 .register(user)
                 .then(alert('Success'));
         }
