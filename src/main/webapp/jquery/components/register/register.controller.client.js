@@ -1,32 +1,51 @@
 (function () {
-    var registerBtn = $('#registerBtn');
+    var $usernameFld, $passwordFld, $verifyPasswordFld;
+    var $registerBtn;
 
-    var usernameFld = $('#usernameFld');
-    var passwordFld = $('#passwordFld');
-    var verifyPasswordFld = $('#verifyPasswordFld');
+    var userService = new UserServiceClient();
+    $(main);
 
-
-    registerBtn.click(registerHandler);
+    function main() {
+        $usernameFld = $('#usernameFld');
+        $passwordFld = $('#passwordFld');
+        $verifyPasswordFld = $('#verifyPasswordFld');
+        $registerBtn = $('#registerBtn');
+        $registerBtn.click(registerHandler);
+    }
 
     function registerHandler() {
-        var usernameStr = usernameFld.val();
-        var passwordStr = passwordFld.val();
-        var verifyPasswordStr = verifyPasswordFld.val();
+        var usernameStr = $usernameFld.val();
+        var passwordStr = $passwordFld.val();
+        var verifyPasswordStr = $verifyPasswordFld.val();
 
-        var userObj = {
-            username: usernameStr,
-            password: passwordStr
-        };
+        if (passwordStr===verifyPasswordStr){
+            var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
+            userService
+                .register(user)
+                .then(alert('Success'));
+        }
+        else {
+            alert('Passwords do not match!')
+        }
 
-        var userObjStr = JSON.stringify(userObj);
 
-        fetch('/api/register', {
-            method: 'post',
-            body: userObjStr,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+
+        // var userObj = {
+        //     username: usernameStr,
+        //     password: passwordStr
+        // };
+
+        // var userObjStr = JSON.stringify(userObj);
+
+
+
+        // fetch('/api/register', {
+        //     method: 'post',
+        //     body: userObjStr,
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
 
     }
 }) ();

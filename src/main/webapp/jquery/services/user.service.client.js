@@ -1,11 +1,24 @@
 function UserServiceClient() {
+    this.register = register;
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.url = '/api/user';
+    this.registerAPI = '/api/register';
     var self = this;
+
+    function register(user) {
+        return fetch(self.registerAPI, {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
+
     function createUser(user) {
         return fetch(self.url, {
             method: 'post',
@@ -15,6 +28,7 @@ function UserServiceClient() {
             }
         });
     }
+
     function findAllUsers() {
         return fetch(self.url)
             .then(function (response) {
