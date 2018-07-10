@@ -15,7 +15,8 @@ function UserServiceClient() {
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            'credentials': 'include'
         });
     }
 
