@@ -17,8 +17,8 @@
             'username': $username.val(),
             "password": $password.val()
         };
-       userService.login(user)
-           .then(navigateToProfile);
+       userService.login(user).then(function(data,err){window.location.href = '../profile/profile.template.client.html'});
+
     }
 
     function navigateToProfile() {

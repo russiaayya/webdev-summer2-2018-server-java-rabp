@@ -40,23 +40,19 @@ public class UserService {
 	
 	@PostMapping("/api/login")
 	public User login(@RequestBody User user, HttpSession session) {
-		user = userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
-		session.setAttribute("currentUser", user);
-		return user;
+		User cuser = userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+		session.setAttribute("currentUser", cuser);
+		return cuser;
 	}
-//	@PostMapping("/api/login")
-//	public List<User> login(@RequestBody User user, HttpSession session){
-//		List<User> e = new ArrayList<User>();
-//		List<User> users = (List<User>) userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
-//		if(users.size()==0)return e;
-//		else {session.setAttribute("currentUser", users.get(0));
-//		return users;
-//		}
-//	}
 	
 	@PostMapping("/api/logout")
 	public void logout(HttpSession session) {
 		session.invalidate();
+	}
+	
+	@GetMapping("/api/users/{username}")
+	public List<User> findUserByUsername(@PathVariable("username") String username) {
+		return (List<User>) userRepository.findUserByUsername(username);
 	}
 	
 	@GetMapping("/api/user")
@@ -101,6 +97,11 @@ public class UserService {
 		}
 		return null;
 
+	}
+	
+	@GetMapping("/api/usercount/{username}")
+	public int findUsernameCount(@PathVariable("username") String username){
+		return userRepository.findUsernameCount(username);
 	}
 	
 }

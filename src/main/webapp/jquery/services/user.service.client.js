@@ -9,6 +9,8 @@ function UserServiceClient() {
     this.login = login;
     this.updateProfile = updateProfile;
     this.logout = logout;
+    this.usernameCount = usernameCount;
+    this.findByUsername = findByUsername;
     this.url = '/api/user';
     this.registerAPI = '/api/register';
     var self = this;
@@ -110,6 +112,19 @@ function UserServiceClient() {
     function deleteUser(userId) {
         return fetch(self.url + '/' + userId,{
             method: 'delete'
+        });
+    }
+
+    function findByUsername(username) {
+        return fetch('/api/users/'+ username)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    function usernameCount(username) {
+        return fetch('/api/usercount/'+ username, {
+            method: 'get'
         });
     }
 }

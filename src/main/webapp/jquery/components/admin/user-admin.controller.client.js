@@ -36,9 +36,29 @@
 
         var user = new User(username,password,email,firstName,lastName,phone,role,dateOfBirth);
 
-        userService
-            .createUser(user)
-            .then(findAllUsers);
+        userService.findByUsername(username).then(uniqueUsername);
+
+        function uniqueUsername(users) {
+            if(users.length ===0){
+                userService
+                    .createUser(user)
+                    .then(findAllUsers);
+            }
+            else {
+                alert('Cannot create this user as the username already exists.');
+            }
+        }
+
+        // if(!userService.findByUsername(username)){
+        //     userService
+        //         .createUser(user)
+        //         .then(findAllUsers);
+        // }
+        // else {
+        //     alert('Username already exists');
+        // }
+
+
     }
     function findAllUsers() {
         userService
