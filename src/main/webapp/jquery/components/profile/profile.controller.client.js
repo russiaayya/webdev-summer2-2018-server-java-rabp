@@ -6,7 +6,9 @@
     var currentUser = null;
     var userService = new UserServiceClient();
 
-    function init() {
+    $(main);
+
+    function main() {
 
         $username = $("#usernameFld");
         $passwordFld = $("#passwordFld");
@@ -26,7 +28,6 @@
             .profile()
             .then(renderUser);
     }
-    $(init);
 
     function updateUser() {
         $(".alert").hide()

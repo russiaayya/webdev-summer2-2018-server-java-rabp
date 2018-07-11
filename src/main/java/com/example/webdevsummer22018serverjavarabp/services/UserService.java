@@ -98,9 +98,9 @@ public class UserService {
 
 	}
 	
-	@GetMapping("/api/usercount/{username}")
-	public int findUsernameCount(@PathVariable("username") String username){
-		return userRepository.findUsernameCount(username);
-	}
+//	@GetMapping("/api/usercount/{username}")
+//	public int findUsernameCount(@PathVariable("username") String username){
+//		return userRepository.findUsernameCount(username);
+//	}
 	
 }

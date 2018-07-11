@@ -9,10 +9,14 @@ function UserServiceClient() {
     this.login = login;
     this.updateProfile = updateProfile;
     this.logout = logout;
-    this.usernameCount = usernameCount;
+    // this.usernameCount = usernameCount;
     this.findByUsername = findByUsername;
     this.url = '/api/user';
     this.registerAPI = '/api/register';
+    this.profileAPI = '/api/profile';
+    this.loginAPI = '/api/login';
+    this.logoutAPI = '/api/logout';
+    this.usernameAPI = '/api/users/';
     var self = this;
 
     function register(user) {
@@ -27,7 +31,7 @@ function UserServiceClient() {
     }
 
     function profile() {
-        return fetch('/api/profile', {
+        return fetch(self.profileAPI, {
             'credentials': 'include'
         })
             .then(function (response) {
@@ -36,7 +40,7 @@ function UserServiceClient() {
     }
 
     function updateProfile(currentUser, updatedUser) {
-        return fetch("/api/user/" + currentUser.id, {
+        return fetch(self.url + currentUser.id, {
             method: 'put',
             body: JSON.stringify(updatedUser),
             'credentials': 'include',
@@ -47,7 +51,7 @@ function UserServiceClient() {
     }
 
     function login(user) {
-        return fetch('/api/login', {
+        return fetch(self.loginAPI, {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +64,7 @@ function UserServiceClient() {
     }
 
     function logout(user) {
-        return fetch('/api/logout', {
+        return fetch(self.logoutAPI, {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
@@ -116,15 +120,15 @@ function UserServiceClient() {
     }
 
     function findByUsername(username) {
-        return fetch('/api/users/'+ username)
+        return fetch(self.usernameAPI+ username)
             .then(function (response) {
                 return response.json();
             });
     }
 
-    function usernameCount(username) {
-        return fetch('/api/usercount/'+ username, {
-            method: 'get'
-        });
-    }
+    // function usernameCount(username) {
+    //     return fetch('/api/usercount/'+ username, {
+    //         method: 'get'
+    //     });
+    // }
 }
