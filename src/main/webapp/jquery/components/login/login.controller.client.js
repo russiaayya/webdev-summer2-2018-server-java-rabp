@@ -17,12 +17,16 @@
             'username': $username.val(),
             "password": $password.val()
         };
-       userService.login(user).then(function(data,err){window.location.href = '../profile/profile.template.client.html'});
+       // userService.login(user).then(function(){window.location.href = '../profile/profile.template.client.html'});
+        userService.login(user).then(navigateToProfile,loginFailed);
 
     }
 
     function navigateToProfile() {
-        alert('hihiiiiii');
         window.location.href = '../profile/profile.template.client.html';
+    }
+    
+    function loginFailed() {
+        alert('Username and password does not match!');
     }
 })();
