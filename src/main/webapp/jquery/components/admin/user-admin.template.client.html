@@ -9,16 +9,6 @@
             "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link href="user-admin.style.client.css"
           rel="stylesheet"/>
-    <!--<link href="user-admin.style.client.css" rel="stylesheet" />-->
-    <!--<script-->
-    <!--src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="../../models/user.model.client.js"></script>
-    <script src="../../services/user.service.client.js"></script>
-    <script src="user-admin.controller.client.js"></script>
 </head>
 <body>
 <div class="container">
@@ -38,34 +28,47 @@
             <th>&nbsp;</th>
         </tr>
         <tr class="wbdv-form">
-            <td><input id="usernameFld" class="form-control"
-                       placeholder="Username"/></td>
-            <td><input type="password" id="passwordFld" class="form-control"
-                       placeholder="Password"/></td>
-            <td><input id="emailFld" class="form-control"
-                       placeholder="Email"/></td>
-            <td><input id="firstNameFld" class="form-control"
-                       placeholder="First Name"/></td>
-            <td><input id="lastNameFld" class="form-control"
-                       placeholder="Last Name"/></td>
-            <td><input id="phoneFld" class="form-control"
-                       placeholder="Phone"/></td>
-            <td><select id="roleFld" class="form-control">
+            <td><input id="usernameFld"
+                       class="form-control"
+                       placeholder="Russia"/>
+            </td>
+            <td><input type="password"
+                       id="passwordFld"
+                       class="form-control"
+                       placeholder="Pw!2"/>
+            </td>
+            <td><input id="emailFld"
+                       class="form-control"
+                       placeholder="russia@neu.com"/>
+            </td>
+            <td><input id="firstNameFld"
+                       class="form-control"
+                       placeholder="Russia"/>
+            </td>
+            <td><input id="lastNameFld"
+                       class="form-control"
+                       placeholder="Benjanda"/>
+            </td>
+            <td><input id="phoneFld"
+                       class="form-control"
+                       placeholder="(555) 123-4324"/>
+            </td>
+            <td><select id="roleFld"
+                        class="form-control">
                 <option value="FACULTY">Faculty</option>
                 <option value="STUDENT">Student</option>
                 <option value="ADMIN">Admin</option>
             </select></td>
-            <td><input type="date" id="dobFld" class="form-control"/></td>
-            <td><span class="float-right" style="white-space: nowrap">
-                <i class="fa-2x fa fa-search wbdv-search"></i>
+            <td><input type="date"
+                       id="dobFld"
+                       class="form-control"/>
+            </td>
+            <td><span class="float-right">
+                <!--<i class="fa-2x fa fa-search wbdv-search"></i>-->
                 <i class="fa-2x fa fa-plus wbdv-create"></i>
                 <i class="fa-2x fa fa-check wbdv-update"></i>
-                </span>
-            </td>
+            </span></td>
         </tr>
-        <div class="alert alert-success" role="alert">
-            Profile successfully updated.
-        </div>
         </thead>
         <tbody class="wbdv-tbody">
         <tr class="wbdv-template wbdv-user wbdv-hidden">
@@ -84,9 +87,15 @@
         </span>
             </td>
         </tr>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="../../models/user.model.client.js"></script>
+        <script src="../../services/user.service.client.js"></script>
+        <script src="user-admin.controller.client.js"></script>
         </tbody>
     </table>
     </div>
 </div>
-
 </body>
+</html>

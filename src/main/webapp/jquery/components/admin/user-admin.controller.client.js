@@ -56,12 +56,12 @@
                     userService
                         .createUser(user)
                         .then(findAllUsers);
+                    emptyFlds();
                 }
                 else {
                     alert('Cannot create this user as the username already exists.');
                 }
             }
-            emptyFlds();
         }
     }
     function findAllUsers() {
@@ -108,10 +108,10 @@
                 $lastNameFld.val(),
                 $phoneFld.val(),
                 $roleFld.val(),
-                $('#dobFld').val());
+                $dateofBirthFld.val());
             userService
                 .updateUser(updateUserId,user)
-                .then(alert('Success')).then(findAllUsers);
+                .then(alert('User sucessfully updated.')).then(findAllUsers);
                 emptyFlds();
         }
 
@@ -130,8 +130,7 @@
         else{
             var date = user.dateOfBirth.substring(0, user.dateOfBirth.indexOf('T'));
         }
-        $('#dobFld').val(date);
-        // $dateofBirthFld.val(user.dateOfBirth);
+        $dateofBirthFld.val(date);
     }
     function renderUsers(users) {
         $tbody.empty();

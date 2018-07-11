@@ -14,6 +14,9 @@
     }
 
     function registerHandler() {
+        $("#alert1").hide();
+        $("#alert2").hide();
+
         var usernameStr = $usernameFld.val();
         var passwordStr = $passwordFld.val();
         var verifyPasswordStr = $verifyPasswordFld.val();
@@ -29,11 +32,13 @@
                         .then(registrationSuccessful, registrationFailed);
                 }
                 else {
-                    alert('Passwords do not match!')
+                    // alert('Passwords do not match!')
+                    $("#alert1").show("slow");
                 }
             }
             else {
-                alert('Username already exists, pick another!');
+                // alert('Username already exists, pick another!');
+                $("#alert2").show("slow");
             }
         }
 
