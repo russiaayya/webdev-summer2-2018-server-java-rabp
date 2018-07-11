@@ -106,6 +106,7 @@
     }
     function renderUser(user) {
         $usernameFld.val(user.username);
+        $passwordFld.val(user.password);
         $emailFld.val(user.email);
         $firstNameFld.val(user.firstName);
         $lastNameFld.val(user.lastName);
