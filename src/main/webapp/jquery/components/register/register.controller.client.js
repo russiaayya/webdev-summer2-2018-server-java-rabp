@@ -18,15 +18,34 @@
         var passwordStr = $passwordFld.val();
         var verifyPasswordStr = $verifyPasswordFld.val();
 
-        if (passwordStr===verifyPasswordStr){
-            var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
-            return userService
-                .register(user)
-                .then(registrationSuccessful, registrationFailed);
+        userService.findByUsername(usernameStr).then(uniqueUsername);
+
+        function uniqueUsername(users) {
+            if(users.length ===0){
+                if (passwordStr===verifyPasswordStr){
+                    var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
+                    return userService
+                        .register(user)
+                        .then(registrationSuccessful, registrationFailed);
+                }
+                else {
+                    alert('Passwords do not match!')
+                }
+            }
+            else {
+                alert('Username already exists, pick another!');
+            }
         }
-        else {
-            alert('Passwords do not match!')
-        }
+
+        // if (passwordStr===verifyPasswordStr){
+        //     var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
+        //     return userService
+        //         .register(user)
+        //         .then(registrationSuccessful, registrationFailed);
+        // }
+        // else {
+        //     alert('Passwords do not match!')
+        // }
 
         function registrationSuccessful() {
             window.location.href = '../profile/profile.template.client.html';
