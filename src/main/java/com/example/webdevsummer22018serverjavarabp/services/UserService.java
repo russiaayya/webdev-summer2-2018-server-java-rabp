@@ -1,5 +1,6 @@
 package com.example.webdevsummer22018serverjavarabp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,22 @@ public class UserService {
 		return userRepository.findById(currentUser.getId());
 	}
 	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user, HttpSession session) {
+		user = userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+		session.setAttribute("currentUser", user);
+		return user;
+	}
+//	@PostMapping("/api/login")
+//	public List<User> login(@RequestBody User user, HttpSession session){
+//		List<User> e = new ArrayList<User>();
+//		List<User> users = (List<User>) userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+//		if(users.size()==0)return e;
+//		else {session.setAttribute("currentUser", users.get(0));
+//		return users;
+//		}
+//	}
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) userRepository.findAll();
@@ -59,9 +76,12 @@ public class UserService {
 			User user = data.get();
 			user.setUsername(newUser.getUsername());
 			user.setPassword(newUser.getPassword());
+			user.setEmail(newUser.getEmail());
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
+			user.setPhone(newUser.getPhone());
 			user.setRole(newUser.getRole());
+			user.setDateOfBirth(newUser.getDateOfBirth());
 			userRepository.save(user);
 			return user;
 		}

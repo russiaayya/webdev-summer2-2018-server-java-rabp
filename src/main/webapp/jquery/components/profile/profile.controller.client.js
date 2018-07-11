@@ -3,6 +3,7 @@
     var $username, $phone, $email, $role, $dateOfBirth,
         $updateBtn, $logoutBtn;
     var currentUser = null;
+    var userService = new UserServiceClient();
 
     function init() {
 
@@ -18,7 +19,9 @@
 
         // findUserById(7)
         //   .then(renderUser)
-        profile()
+
+        userService
+            .profile()
             .then(renderUser);
     }
     init();
@@ -41,16 +44,21 @@
 
     function renderUser(user) {
         $username.val(user.username);
+        $phone.val(user.phone);
+        $email.val(user.email);
+        $role.val(user.role);
+        $dateOfBirth.val(user.dateOfBirth);
+
     }
 
-    function profile() {
-        return fetch('/api/profile', {
-            'credentials': 'include'
-        })
-            .then(function (response) {
-                return response.json();
-            });
-    }
+    // function profile() {
+    //     return fetch('/api/profile', {
+    //         'credentials': 'include'
+    //     })
+    //         .then(function (response) {
+    //             return response.json();
+    //         });
+    // }
 
     function findUserById(userId) {
         return fetch('/api/user/' + userId)

@@ -22,10 +22,18 @@
             var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
             return userService
                 .register(user)
-                .then(alert('Success'));
+                .then(registrationSuccessful, registrationFailed);
         }
         else {
             alert('Passwords do not match!')
+        }
+
+        function registrationSuccessful() {
+            window.location.href = '../profile/profile.template.client.html';
+        }
+
+        function registrationFailed() {
+            alert('oops')
         }
 
 

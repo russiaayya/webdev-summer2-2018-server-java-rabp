@@ -27,9 +27,12 @@
         <tr>
             <th>Username</th>
             <th>Password</th>
+            <th>Email</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Phone</th>
             <th>Role</th>
+            <th>Date of Birth</th>
             <th>&nbsp;</th>
         </tr>
         <tr class="wbdv-form">
@@ -37,14 +40,20 @@
                        placeholder="Username"/></td>
             <td><input type="password" id="passwordFld" class="form-control"
                        placeholder="Password"/></td>
+            <td><input id="emailFld" class="form-control"
+                       placeholder="Email"/></td>
             <td><input id="firstNameFld" class="form-control"
                        placeholder="First Name"/></td>
             <td><input id="lastNameFld" class="form-control"
                        placeholder="Last Name"/></td>
+            <td><input id="phoneFld" class="form-control"
+                       placeholder="Phone"/></td>
             <td><select id="roleFld" class="form-control">
                 <option value="FACULTY">Faculty</option>
                 <option value="STUDENT">Student</option>
+                <option value="ADMIN">Admin</option>
             </select></td>
+            <td><input type="date" id="dobFld" class="form-control"/></td>
             <td><span class="float-right" style="white-space: nowrap">
                 <i class="fa-2x fa fa-search wbdv-search"></i>
                 <i class="fa-2x fa fa-plus wbdv-create"></i>
@@ -57,9 +66,12 @@
         <tr class="wbdv-template wbdv-user wbdv-hidden">
             <td class="wbdv-username"></td>
             <td>&nbsp;</td>
+            <td class="wbdv-email"></td>
             <td class="wbdv-first-name"></td>
             <td class="wbdv-last-name"></td>
+            <td class="wbdv-phone"></td>
             <td class="wbdv-role"></td>
+            <td class="wbdv-dob"></td>
             <td class="wbdv-actions">
         <span class="float-right">
           <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
