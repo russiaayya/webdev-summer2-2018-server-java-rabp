@@ -19,9 +19,20 @@
         $roleFld = $('#roleFld');
         $emailFld = $('#emailFld');
         $phoneFld = $('#phoneFld');
-        $dateofBirthFld = ('#dobFld');
+        $dateofBirthFld = $('#dobFld');
         $('.wbdv-update').click(updateUser);
         findAllUsers();
+    }
+
+    function emptyFlds() {
+        $usernameFld.val('');
+        $passwordFld.val('');
+        $firstNameFld.val('');
+        $lastNameFld.val('');
+        $roleFld.val('');
+        $emailFld.val('');
+        $phoneFld.val('');
+        $dateofBirthFld.val('');
     }
 
     function createUser() {
@@ -34,31 +45,24 @@
         var phone = $('#phoneFld').val();
         var dateOfBirth = $('#dobFld').val();
 
-        var user = new User(username,password,email,firstName,lastName,phone,role,dateOfBirth);
-
-        userService.findByUsername(username).then(uniqueUsername);
-
-        function uniqueUsername(users) {
-            if(users.length ===0){
-                userService
-                    .createUser(user)
-                    .then(findAllUsers);
-            }
-            else {
-                alert('Cannot create this user as the username already exists.');
-            }
+        if(username.length === 0){
+            alert("Username cannot be empty");
         }
-
-        // if(!userService.findByUsername(username)){
-        //     userService
-        //         .createUser(user)
-        //         .then(findAllUsers);
-        // }
-        // else {
-        //     alert('Username already exists');
-        // }
-
-
+        else{
+            userService.findByUsername(username).then(uniqueUsername);
+            function uniqueUsername(users) {
+                if(users.length ===0){
+                    var user = new User(username,password,email,firstName,lastName,phone,role,dateOfBirth);
+                    userService
+                        .createUser(user)
+                        .then(findAllUsers);
+                }
+                else {
+                    alert('Cannot create this user as the username already exists.');
+                }
+            }
+            emptyFlds();
+        }
     }
     function findAllUsers() {
         userService
@@ -92,17 +96,25 @@
         updateUserId = userId;
     }
     function updateUser(event) {
-        var user = new User($usernameFld.val(),
-            $passwordFld.val(),
-            $emailFld.val(),
-            $firstNameFld.val(),
-            $lastNameFld.val(),
-            $phoneFld.val(),
-            $roleFld.val(),
-            $('#dobFld').val());
-        userService
-            .updateUser(updateUserId,user)
-            .then(alert('Success')).then(findAllUsers);
+        if($usernameFld.val().length === 0){
+            alert("Username cannot be empty");
+        }
+        else
+            {
+            var user = new User($usernameFld.val(),
+                $passwordFld.val(),
+                $emailFld.val(),
+                $firstNameFld.val(),
+                $lastNameFld.val(),
+                $phoneFld.val(),
+                $roleFld.val(),
+                $('#dobFld').val());
+            userService
+                .updateUser(updateUserId,user)
+                .then(alert('Success')).then(findAllUsers);
+                emptyFlds();
+        }
+
     }
     function renderUser(user) {
         $usernameFld.val(user.username);

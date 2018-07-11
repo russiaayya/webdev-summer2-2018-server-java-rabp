@@ -25,7 +25,7 @@
     function navigateToProfile() {
         window.location.href = '../profile/profile.template.client.html';
     }
-    
+
     function loginFailed() {
         alert('Username and password does not match!');
     }
