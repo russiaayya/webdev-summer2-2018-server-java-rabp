@@ -13,13 +13,12 @@
     init();
 
     function login() {
+        $(".alert").hide()
         var user = {
             'username': $username.val(),
             "password": $password.val()
         };
-       // userService.login(user).then(function(){window.location.href = '../profile/profile.template.client.html'});
         userService.login(user).then(navigateToProfile,loginFailed);
-
     }
 
     function navigateToProfile() {
@@ -27,6 +26,7 @@
     }
 
     function loginFailed() {
-        alert('Username and password does not match!');
+        $(".alert").show("slow")
+        // alert('Username and password does not match!');
     }
 })();

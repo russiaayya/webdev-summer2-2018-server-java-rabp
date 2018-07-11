@@ -1,7 +1,7 @@
 (function () {
 
-    var $username, $phone, $email, $role, $dateOfBirth,
-        $updateBtn, $logoutBtn;
+    var $username, $phone, $email, $role, $dateOfBirth, $passwordFld, $firstNameFld,
+        $lastNameFld, $updateBtn, $logoutBtn;
     var currentUserId;
     var currentUser = null;
     var userService = new UserServiceClient();
@@ -9,6 +9,9 @@
     function init() {
 
         $username = $("#usernameFld");
+        $passwordFld = $("#passwordFld");
+        $firstNameFld = $("#firstNameFld");
+        $lastNameFld = $("#lastNameFld");
         $phone = $("#phoneFld");
         $email = $("#emailFld");
         $role = $("#roleFld");
@@ -19,9 +22,6 @@
         $updateBtn.click(updateUser);
         $logoutBtn.click(logoutUser);
 
-        // findUserById(7)
-        //   .then(renderUser)
-
         userService
             .profile()
             .then(renderUser);
@@ -29,31 +29,22 @@
     $(init);
 
     function updateUser() {
-        // var user = {
-        //     firstName: $firstName.val(),
-        //     lastName: $lastName.val()
-        // };
+        $(".alert").hide()
 
-        var updatedUser = new User(currentUser.username,currentUser.password,$email.val(),
-            currentUser.firstName,currentUser.lastName, $phone.val(), $role.val(), $('#dobFld').val())
+        var updatedUser = new User(currentUser.username,$passwordFld.val(),$email.val(),
+            $firstNameFld.val(),$lastNameFld.val(), $phone.val(), $role.val(), $('#dobFld').val())
 
         userService
             .updateProfile(currentUser, updatedUser)
-            .then(alert('Success'));
-
-        // fetch("/api/user/" + currentUser.id, {
-        //     method: 'put',
-        //     body: JSON.stringify(updatedUser),
-        //     'credentials': 'include',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     }
-        // });
+            .then($(".alert").show("slow"));
     }
 
     function renderUser(user) {
         currentUser = user;
         $username.val(user.username);
+        $passwordFld.val(user.password);
+        $firstNameFld.val(user.firstName);
+        $lastNameFld.val(user.lastName);
         $phone.val(user.phone);
         $email.val(user.email);
         $role.val(user.role);
@@ -74,22 +65,5 @@
                 window.location.href = '../login/login.template.client.html';
             })
     }
-
-
-    // function profile() {
-    //     return fetch('/api/profile', {
-    //         'credentials': 'include'
-    //     })
-    //         .then(function (response) {
-    //             return response.json();
-    //         });
-    // }
-
-    // function findUserById(userId) {
-    //     return fetch('/api/user/' + userId)
-    //         .then(function (response) {
-    //             return response.json();
-    //         });
-    // }
 
 })();

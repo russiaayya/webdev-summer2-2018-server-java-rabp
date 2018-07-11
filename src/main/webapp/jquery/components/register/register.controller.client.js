@@ -37,42 +37,12 @@
             }
         }
 
-        // if (passwordStr===verifyPasswordStr){
-        //     var user = new User(usernameStr,passwordStr,null,null,null,null,null,null);
-        //     return userService
-        //         .register(user)
-        //         .then(registrationSuccessful, registrationFailed);
-        // }
-        // else {
-        //     alert('Passwords do not match!')
-        // }
-
         function registrationSuccessful() {
             window.location.href = '../profile/profile.template.client.html';
         }
 
         function registrationFailed() {
-            alert('oops')
+            alert('Unable to register, please try again in sometime.')
         }
-
-
-
-        // var userObj = {
-        //     username: usernameStr,
-        //     password: passwordStr
-        // };
-
-        // var userObjStr = JSON.stringify(userObj);
-
-
-
-        // fetch('/api/register', {
-        //     method: 'post',
-        //     body: userObjStr,
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // });
-
     }
 }) ();
