@@ -17,7 +17,7 @@
         $logoutBtn = $("#logoutBtn");
 
         $updateBtn.click(updateUser);
-        // $logoutBtn.click(logoutUser);
+        $logoutBtn.click(logoutUser);
 
         // findUserById(7)
         //   .then(renderUser)
@@ -37,14 +37,18 @@
         var updatedUser = new User(currentUser.username,currentUser.password,$email.val(),
             currentUser.firstName,currentUser.lastName, $phone.val(), $role.val(), $('#dobFld').val())
 
-        fetch("/api/user/" + currentUser.id, {
-            method: 'put',
-            body: JSON.stringify(updatedUser),
-            'credentials': 'include',
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
+        userService
+            .updateProfile(currentUser, updatedUser)
+            .then(alert('Success'));
+
+        // fetch("/api/user/" + currentUser.id, {
+        //     method: 'put',
+        //     body: JSON.stringify(updatedUser),
+        //     'credentials': 'include',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     }
+        // });
     }
 
     function renderUser(user) {
@@ -63,9 +67,14 @@
 
     }
     
-    // function logoutUser() {
-    //
-    // }
+    function logoutUser() {
+        userService
+            .logout(currentUser)
+            .then(function () {
+                window.location.href = '../login/login.template.client.html';
+            })
+    }
+
 
     // function profile() {
     //     return fetch('/api/profile', {
