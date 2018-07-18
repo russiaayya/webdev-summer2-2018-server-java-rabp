@@ -11,12 +11,13 @@ function UserServiceClient() {
     this.logout = logout;
     // this.usernameCount = usernameCount;
     this.findByUsername = findByUsername;
+    this.sendEmail = sendEmail;
     this.url = '/api/user';
     this.registerAPI = '/api/register';
     this.profileAPI = '/api/profile';
     this.loginAPI = '/api/login';
     this.logoutAPI = '/api/logout';
-    this.usernameAPI = '/api/users/';
+    this.usernameAPI = '/api/users';
     var self = this;
 
     function register(user) {
@@ -40,7 +41,7 @@ function UserServiceClient() {
     }
 
     function updateProfile(currentUser, updatedUser) {
-        return fetch(self.url + currentUser.id, {
+        return fetch(self.url + '/' + currentUser.id, {
             method: 'put',
             body: JSON.stringify(updatedUser),
             'credentials': 'include',
@@ -124,6 +125,16 @@ function UserServiceClient() {
             .then(function (response) {
                 return response.json();
             });
+    }
+
+    function sendEmail(username) {
+        return fetch(self.usernameAPI, {
+            method: 'post',
+            body: username,
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
     }
 
     // function usernameCount(username) {

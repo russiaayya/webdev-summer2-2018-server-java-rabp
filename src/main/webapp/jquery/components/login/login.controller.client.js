@@ -1,7 +1,8 @@
 (function () {
     var $username,
         $password,
-        $loginBtn;
+        $loginBtn,
+        $forgotBtn;
         var userService = new UserServiceClient();
 
     $(main);
@@ -10,8 +11,15 @@
         $username = $('#username');
         $password = $('#password');
         $loginBtn = $('#loginBtn');
+        $forgotBtn = $('#forgotBtn');
 
         $loginBtn.click(login);
+        $forgotBtn.click(sendEmail);
+    }
+
+    function sendEmail() {
+        // var user = new User($username.val(),null,null,null,null,null,null,null);
+        userService.sendEmail($username.val()).then(alert('ohooo'));
     }
 
     function login() {
