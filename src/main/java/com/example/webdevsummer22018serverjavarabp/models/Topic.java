@@ -1,5 +1,6 @@
 package com.example.webdevsummer22018serverjavarabp.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -7,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
 public class Topic {
 	
 	@Id
@@ -16,6 +18,7 @@ public class Topic {
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
+
 	public int getId() {
 		return id;
 	}

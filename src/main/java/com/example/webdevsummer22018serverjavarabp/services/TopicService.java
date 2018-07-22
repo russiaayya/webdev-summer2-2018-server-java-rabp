@@ -30,7 +30,7 @@ public class TopicService {
 	@Autowired
 	ModuleRepository moduleRepository;
 	
-	@GetMapping("/api/lesson")
+	@GetMapping("/api/topic")
 	public List<Topic> findAllTopics() {
 		return (List<Topic>) topicRepository.findAll();
 	}
