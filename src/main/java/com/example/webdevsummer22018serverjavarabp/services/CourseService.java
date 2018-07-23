@@ -30,6 +30,7 @@ public class CourseService {
 	public Course createCourse(
 			@RequestBody Course course) {
 		course.setCreated(new Date());
+		course.setModified(new Date());
 		return courseRepository.save(course);
 	}
 	
