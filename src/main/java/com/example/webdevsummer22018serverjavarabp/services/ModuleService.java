@@ -20,7 +20,7 @@ import com.example.webdevsummer22018serverjavarabp.repositories.CourseRepository
 import com.example.webdevsummer22018serverjavarabp.repositories.ModuleRepository;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 public class ModuleService {
 	@Autowired
 	CourseRepository courseRepository;
